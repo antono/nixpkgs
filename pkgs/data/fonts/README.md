@@ -16,7 +16,7 @@ be included as well, i.e. `fonts-FOUNDRY-name`.
 
 The files corresponding to a given font are installed in directories
 dependent on the type and name of the font. The fonts must be stored
-in a directory named as /usr/share/fonts/fonttype/name/, where
+in a directory named as `$out/share/fonts/fonttype/name/`, where
 fonttype is the type (OpenType, TrueType, Type1, etc).
 
 As an example, the Linux Libertine fonts distributed in OpenType
