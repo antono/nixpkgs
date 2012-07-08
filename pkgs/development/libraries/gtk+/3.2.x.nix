@@ -1,4 +1,4 @@
-{ stdenv, fetchurl, pkgconfig, glib, atk, pango, cairo, perl, xlibs
+{ stdenv, fetchurl, pkgconfig, glib, atk, at_spi2_atk, pango, cairo, perl, xlibs
 , gdk_pixbuf, xz
 , xineramaSupport ? true
 , cupsSupport ? true, cups ? null
@@ -8,11 +8,11 @@ assert xineramaSupport -> xlibs.libXinerama != null;
 assert cupsSupport -> cups != null;
 
 stdenv.mkDerivation rec {
-  name = "gtk+-3.2.3";
+  name = "gtk+-3.5.6";
 
   src = fetchurl {
-    url = mirror://gnome/sources/gtk+/3.2/gtk+-3.2.3.tar.xz;
-    sha256 = "0g8x2kcqq17bccm4yszim837saj73zfk66ia2azcgfqfa7r21kz2";
+    url = "mirror://gnome/sources/gtk+/3.2/${name}.tar.xz";
+    sha256 = "1088d5n3yzzjxm13c29sys83m28dmd5b95i1wxc6459vq2d4l14g";
   };
 
   enableParallelBuilding = true;
@@ -20,7 +20,7 @@ stdenv.mkDerivation rec {
   buildNativeInputs = [ perl pkgconfig ];
 
   propagatedBuildInputs =
-    [ xlibs.xlibs glib atk pango gdk_pixbuf cairo
+    [ xlibs.xlibs glib atk at_spi2_atk pango gdk_pixbuf cairo
       xlibs.libXrandr xlibs.libXrender xlibs.libXcomposite xlibs.libXi
     ]
     ++ stdenv.lib.optional xineramaSupport xlibs.libXinerama

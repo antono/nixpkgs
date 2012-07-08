@@ -2986,6 +2986,10 @@ let
 
   gnome_doc_utils = callPackage ../development/tools/documentation/gnome-doc-utils {};
 
+  gnome_dictionary = callPackage ../desktops/gnome-3/desktop/gnome-dictionary {
+      gtk = gtk3;
+  };
+
   gnum4 = callPackage ../development/tools/misc/gnum4 { };
 
   gnumake = callPackage ../development/tools/build-managers/gnumake { };
@@ -3194,6 +3198,10 @@ let
   attica = callPackage ../development/libraries/attica { };
 
   attr = callPackage ../development/libraries/attr { };
+
+  at_spi2_atk = callPackage ../development/libraries/at-spi2-atk { };
+
+  at_spi2_core = callPackage ../development/libraries/at-spi2-core { };
 
   aqbanking = callPackage ../development/libraries/aqbanking { };
 
@@ -3713,7 +3721,7 @@ let
       gtkmm;
   };
 
-  glib = callPackage ../development/libraries/glib/2.30.x.nix { };
+  glib = callPackage ../development/libraries/glib/2.33.x.nix { };
 
   glibmm = callPackage ../development/libraries/glibmm/2.30.x.nix { };
 
@@ -3725,11 +3733,11 @@ let
 
   cairo = callPackage ../development/libraries/cairo { };
 
-  pango = callPackage ../development/libraries/pango/1.29.x.nix { };
+  pango = callPackage ../development/libraries/pango/default.nix { };
 
   pangomm = callPackage ../development/libraries/pangomm/2.28.x.nix { };
 
-  gdk_pixbuf = callPackage ../development/libraries/gdk-pixbuf/2.24.x.nix { };
+  gdk_pixbuf = callPackage ../development/libraries/gdk-pixbuf/2.26.x.nix { };
 
   gtk2 = callPackage ../development/libraries/gtk+/2.24.x.nix { };
 
@@ -7990,6 +7998,11 @@ let
   }  // pkgs.gtkLibs // {
     # Backwards compatibility;
     inherit (pkgs) libsoup libwnck gtk_doc gnome_doc_utils;
+  };
+
+  gnome3 = callPackage ../desktops/gnome-3 {
+    callPackage = pkgs.newScope pkgs.gnome3;
+    self = pkgs.gnome3;
   };
 
   gnome = recurseIntoAttrs gnome2;

@@ -788,11 +788,11 @@ let
   })) // {inherit libICE kbproto libSM libX11 xproto ;};
     
   libXtst = (stdenv.mkDerivation ((if overrides ? libXtst then overrides.libXtst else x: x) {
-    name = "libXtst-1.2.0";
+    name = "libXtst-1.2.1";
     builder = ./builder.sh;
     src = fetchurl {
-      url = mirror://xorg/X11R7.6/src/everything/libXtst-1.2.0.tar.bz2;
-      sha256 = "022lx3c57pkkw11j2k5s1f5idf53li5qg291766bvxi1nl90jbks";
+      url = mirror://xorg/X11R7.6/src/everything/libXtst-1.2.1.tar.bz2;
+      sha256 = "1q750hjplq1rfyxkr4545z1y2a1wfnc828ynvbws7b4jwdk3xsky";
     };
     buildInputs = [pkgconfig inputproto recordproto libX11 libXext xextproto libXi ];
   })) // {inherit inputproto recordproto libX11 libXext xextproto libXi ;};
