@@ -56,6 +56,7 @@ in
         HOME = "/var/lib/n8n";
         N8N_CONFIG_FILES = "${configFile}";
         WEBHOOK_URL = "${cfg.webhookUrl}";
+        N8N_CUSTOM_EXTENSIONS = "/var/lib/n8n/custom_extensions";
 
         # Don't phone home
         N8N_DIAGNOSTICS_ENABLED = "false";
@@ -84,6 +85,10 @@ in
         RestrictSUIDSGID = "yes";
         MemoryDenyWriteExecute = "no"; # v8 JIT requires memory segments to be Writable-Executable.
         LockPersonality = "yes";
+        ExecStartPre = ''
+          mkdir -p /var/lib/n8n/custom_extensions
+          ${pkgs.nodejs}/bin/npm install --prefix /var/lib/n8n/custom_extensions @fibery/n8n-nodes-fibery
+        '';
       };
     };
 

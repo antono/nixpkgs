@@ -14,6 +14,12 @@
   libpq,
   makeWrapper,
 }:
+let
+  inherit (lib)
+    mkOption
+    type
+    ;
+in
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "n8n";
@@ -26,6 +32,15 @@ stdenv.mkDerivation (finalAttrs: {
     hash = "sha256-GIY8Gokbp03LJT0kBx3KR8U/4bi10WrXAzO2zuctlFY=";
   };
 
+  # options = {
+  #   name = mkOption {
+  #     type = type.listOf type.str;
+  #     default = default [ ];
+  #     example = example value;
+  #     description = "Description for use in the NixOS manual.";
+  #   };
+  # };
+  #
   pnpmDeps = pnpm_10.fetchDeps {
     inherit (finalAttrs) pname version src;
     fetcherVersion = 2;
@@ -113,6 +128,7 @@ stdenv.mkDerivation (finalAttrs: {
     maintainers = with lib.maintainers; [
       gepbird
       AdrienLemaire
+      antono
     ];
     license = lib.licenses.sustainableUse;
     mainProgram = "n8n";
