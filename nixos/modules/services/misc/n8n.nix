@@ -85,10 +85,6 @@ in
         RestrictSUIDSGID = "yes";
         MemoryDenyWriteExecute = "no"; # v8 JIT requires memory segments to be Writable-Executable.
         LockPersonality = "yes";
-        ExecStartPre = ''
-          mkdir -p /var/lib/n8n/custom_extensions
-          ${pkgs.nodejs}/bin/npm install --prefix /var/lib/n8n/custom_extensions @fibery/n8n-nodes-fibery
-        '';
       };
     };
 

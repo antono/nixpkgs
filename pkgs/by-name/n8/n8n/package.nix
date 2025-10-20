@@ -4,6 +4,7 @@
   nixosTests,
   fetchFromGitHub,
   nodejs,
+  npm,
   pnpm_10,
   python3,
   node-gyp,
@@ -32,15 +33,6 @@ stdenv.mkDerivation (finalAttrs: {
     hash = "sha256-GIY8Gokbp03LJT0kBx3KR8U/4bi10WrXAzO2zuctlFY=";
   };
 
-  # options = {
-  #   name = mkOption {
-  #     type = type.listOf type.str;
-  #     default = default [ ];
-  #     example = example value;
-  #     description = "Description for use in the NixOS manual.";
-  #   };
-  # };
-  #
   pnpmDeps = pnpm_10.fetchDeps {
     inherit (finalAttrs) pname version src;
     fetcherVersion = 2;
